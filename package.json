@@ -1,0 +1,13 @@
+{
+  "name": "relay-v2-test",
+  "version": "0.0.0",
+  "private": true,
+  "description": "relay-v2의 GitHub 연동 시험용 레포",
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

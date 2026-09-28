@@ -1,0 +1,35 @@
+# PR과 main push마다 테스트를 돌린다. 스위치 파일로 일부러 실패시킬 수 있다(README의 "CI 스위치").
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 스위치 확인
+        env:
+          RUN_ATTEMPT: ${{ github.run_attempt }}
+        run: |
+          if [ -f ci-fail ]; then
+            echo "::error::ci-fail 파일이 있어 실패합니다 (시험용 스위치)."
+            exit 1
+          fi
+          if [ -f ci-flaky ] && [ "$RUN_ATTEMPT" = "1" ]; then
+            echo "::error::ci-flaky 파일이 있어 첫 시도만 실패합니다 (시험용 스위치). 실패한 작업을 다시 실행하면 통과합니다."
+            exit 1
+          fi
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm test
