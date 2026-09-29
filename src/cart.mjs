@@ -30,3 +30,12 @@ export function formatWon(won) {
 export function isEmpty(items) {
   return items.length === 0;
 }
+
+/**
+ * 수량의 합 (relay M9 시험 변경).
+ * @param {{ qty: number }[]} items
+ * @returns {number}
+ */
+export function count(items) {
+  return items.reduce((sum, item) => sum + item.qty, 0);
+}
