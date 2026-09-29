@@ -21,3 +21,12 @@ export function total(items, coupon = {}) {
 export function formatWon(won) {
   return `${String(won).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원`;
 }
+
+/**
+ * 장바구니가 비었는가 (relay M9 기준 브랜치 변경).
+ * @param {unknown[]} items
+ * @returns {boolean}
+ */
+export function isEmpty(items) {
+  return items.length === 0;
+}
