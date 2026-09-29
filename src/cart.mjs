@@ -23,6 +23,15 @@ export function formatWon(won) {
 }
 
 /**
+ * 장바구니가 비었는가 (S7 기준 브랜치 변경).
+ * @param {unknown[]} items
+ * @returns {boolean}
+ */
+export function isEmpty(items) {
+  return items.length === 0;
+}
+
+/**
  * 수량의 합 (S7 시험 변경).
  * @param {{ qty: number }[]} items
  * @returns {number}
