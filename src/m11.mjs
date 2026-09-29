@@ -4,5 +4,5 @@
  * @returns {number}
  */
 export function totalQty(items) {
-  return items.reduce((sum, item) => sum + item.qty, 0);
+  return items.reduce((sum, item) => sum + Math.max(item.qty, 0), 0);
 }
