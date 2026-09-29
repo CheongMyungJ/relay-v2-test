@@ -21,3 +21,12 @@ export function total(items, coupon = {}) {
 export function formatWon(won) {
   return `${String(won).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원`;
 }
+
+/**
+ * 수량의 합 (S7 시험 변경).
+ * @param {{ qty: number }[]} items
+ * @returns {number}
+ */
+export function count(items) {
+  return items.reduce((sum, item) => sum + item.qty, 0);
+}
